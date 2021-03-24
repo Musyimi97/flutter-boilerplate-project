@@ -27,7 +27,7 @@ class PostDataSource {
     return await _postsStore.count(await _db);
   }
 
-  Future<List<Post>> getAllSortedByFilter({List<Filter> filters}) async {
+  Future<List<Post>> getAllSortedByFilter({List<Filter>? filters}) async {
     //creating finder
     final finder = Finder(
         filter: Filter.and(filters),

@@ -7,11 +7,11 @@ class RoundedButtonWidget extends StatelessWidget {
   final VoidCallback onPressed;
 
   const RoundedButtonWidget({
-    Key key,
-    this.buttonText,
-    this.buttonColor,
+    Key? key,
+    required this.buttonText,
+    required this.buttonColor,
+    required this.onPressed,
     this.textColor = Colors.white,
-    this.onPressed,
   }) : super(key: key);
 
   @override
@@ -22,7 +22,7 @@ class RoundedButtonWidget extends StatelessWidget {
       onPressed: onPressed,
       child: Text(
         buttonText,
-        style: Theme.of(context).textTheme.button.copyWith(color: textColor),
+        style: Theme.of(context).textTheme.button?.copyWith(color: textColor),
       ),
     );
   }

@@ -10,7 +10,7 @@ class UserStore = _UserStore with _$UserStore;
 
 abstract class _UserStore with Store {
   // repository instance
-  final Repository _repository;
+  final Repository? _repository;
 
   // store for handling form errors
   final FormErrorStore formErrorStore = FormErrorStore();
@@ -22,19 +22,19 @@ abstract class _UserStore with Store {
   bool isLoggedIn = false;
 
   // constructor:---------------------------------------------------------------
-  _UserStore(Repository repository) : this._repository = repository {
+  _UserStore(Repository? repository) : this._repository = repository {
 
     // setting up disposers
     _setupDisposers();
 
     // checking if user is logged in
-    repository.isLoggedIn.then((value) {
+    repository?.isLoggedIn.then((value) {
       this.isLoggedIn = value ?? false;
     });
   }
 
   // disposers:-----------------------------------------------------------------
-  List<ReactionDisposer> _disposers;
+  late List<ReactionDisposer> _disposers;
 
   void _setupDisposers() {
     _disposers = [
@@ -60,11 +60,11 @@ abstract class _UserStore with Store {
   @action
   Future login(String email, String password) async {
 
-    final future = _repository.login(email, password);
+    final future = _repository?.login(email, password);
     loginFuture = ObservableFuture(future);
-    await future.then((value) async {
+    await future?.then((value) async {
       if (value) {
-        _repository.saveIsLoggedIn(true);
+        _repository?.saveIsLoggedIn(true);
         this.isLoggedIn = true;
         this.success = true;
       } else {
@@ -80,7 +80,7 @@ abstract class _UserStore with Store {
 
   logout() {
     this.isLoggedIn = false;
-    _repository.saveIsLoggedIn(false);
+    _repository?.saveIsLoggedIn(false);
   }
 
   // general methods:-----------------------------------------------------------

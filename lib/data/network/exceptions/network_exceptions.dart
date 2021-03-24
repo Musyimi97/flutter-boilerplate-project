@@ -2,7 +2,7 @@ class NetworkException implements Exception {
   String message;
   int statusCode;
 
-  NetworkException({this.message, this.statusCode});
+  NetworkException({required this.message, required this.statusCode});
 }
 
 class AuthException extends NetworkException {

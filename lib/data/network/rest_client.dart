@@ -27,9 +27,9 @@ class RestClient {
   }
 
   // Post:----------------------------------------------------------------------
-  Future<dynamic> post(String url, {Map headers, body, encoding}) {
+  Future<dynamic> post(String url, {Map<String, String>? headers, body, encoding}) {
     return http
-        .post(url, body: body, headers: headers, encoding: encoding)
+        .post(url, body: body, headers: (headers)!, encoding: encoding)
         .then((http.Response response) {
       final String res = response.body;
       final int statusCode = response.statusCode;

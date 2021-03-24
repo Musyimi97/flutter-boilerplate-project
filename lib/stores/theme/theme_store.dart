@@ -11,7 +11,7 @@ abstract class _ThemeStore with Store {
   final String TAG = "_ThemeStore";
 
   // repository instance
-  final Repository _repository;
+  final Repository? _repository;
 
   // store for handling errors
   final ErrorStore errorStore = ErrorStore();
@@ -25,7 +25,7 @@ abstract class _ThemeStore with Store {
   bool get darkMode => _darkMode;
 
   // constructor:---------------------------------------------------------------
-  _ThemeStore(Repository repository)
+  _ThemeStore(Repository? repository)
       : this._repository = repository {
     init();
   }
@@ -34,7 +34,7 @@ abstract class _ThemeStore with Store {
   @action
   Future changeBrightnessToDark(bool value) async {
     _darkMode = value;
-    await _repository.changeBrightnessToDark(value);
+    await _repository?.changeBrightnessToDark(value);
   }
 
   // general methods:-----------------------------------------------------------

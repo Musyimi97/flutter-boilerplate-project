@@ -11,7 +11,6 @@ import 'package:boilerplate/stores/theme/theme_store.dart';
 import 'package:boilerplate/stores/user/user_store.dart';
 import 'package:boilerplate/ui/home/home.dart';
 import 'package:boilerplate/ui/login/login.dart';
-import 'package:boilerplate/ui/splash/splash.dart';
 import 'package:boilerplate/utils/locale/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,7 +20,7 @@ import 'package:inject/inject.dart';
 import 'package:provider/provider.dart';
 
 // global instance for app component
-AppComponent appComponent;
+AppComponent? appComponent;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +35,7 @@ void main() {
       LocalModule(),
       PreferenceModule(),
     );
-    runApp(appComponent.app);
+    runApp(appComponent!.app);
   });
 }
 
@@ -45,10 +44,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   // Create your store as a final variable in a base Widget. This works better
   // with Hot Reload than creating it directly in the `build` function.
-  final ThemeStore _themeStore = ThemeStore(appComponent.getRepository());
-  final PostStore _postStore = PostStore(appComponent.getRepository());
-  final LanguageStore _languageStore = LanguageStore(appComponent.getRepository());
-  final UserStore _userStore = UserStore(appComponent.getRepository());
+  final ThemeStore _themeStore = ThemeStore(appComponent?.getRepository());
+  final PostStore _postStore = PostStore(appComponent?.getRepository());
+  final LanguageStore _languageStore = LanguageStore(appComponent?.getRepository());
+  final UserStore _userStore = UserStore(appComponent?.getRepository());
 
   @override
   Widget build(BuildContext context) {

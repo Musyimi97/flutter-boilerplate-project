@@ -10,24 +10,24 @@ class PostStore = _PostStore with _$PostStore;
 
 abstract class _PostStore with Store {
   // repository instance
-  Repository _repository;
+  Repository? _repository;
 
   // store for handling errors
   final ErrorStore errorStore = ErrorStore();
 
   // constructor:---------------------------------------------------------------
-  _PostStore(Repository repository) : this._repository = repository;
+  _PostStore(Repository? repository) : this._repository = repository;
 
   // store variables:-----------------------------------------------------------
-  static ObservableFuture<PostList> emptyPostResponse =
+  static ObservableFuture<PostList?> emptyPostResponse =
       ObservableFuture.value(null);
 
   @observable
-  ObservableFuture<PostList> fetchPostsFuture =
-      ObservableFuture<PostList>(emptyPostResponse);
+  ObservableFuture<PostList?> fetchPostsFuture =
+      ObservableFuture<PostList?>(emptyPostResponse);
 
   @observable
-  PostList postList;
+  late PostList postList;
 
   @observable
   bool success = false;
@@ -38,8 +38,8 @@ abstract class _PostStore with Store {
   // actions:-------------------------------------------------------------------
   @action
   Future getPosts() async {
-    final future = _repository.getPosts();
-    fetchPostsFuture = ObservableFuture(future);
+    final future = _repository?.getPosts();
+    fetchPostsFuture = ObservableFuture(future!);
 
     future.then((postList) {
       this.postList = postList;

@@ -38,7 +38,7 @@ class Repository {
 
   Future<List<Post>> findPostById(int id) {
     //creating filter
-    List<Filter> filters = List();
+    List<Filter> filters = [];
 
     //check to see if dataLogsType is not null
     if (id != null) {

@@ -27,10 +27,10 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _passwordController = TextEditingController();
 
   //stores:---------------------------------------------------------------------
-  ThemeStore _themeStore;
+  late ThemeStore _themeStore;
 
   //focus node:-----------------------------------------------------------------
-  FocusNode _passwordFocusNode;
+  late FocusNode _passwordFocusNode;
 
   //stores:---------------------------------------------------------------------
   final _store = FormStore();
@@ -128,7 +128,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Observer(
       builder: (context) {
         return TextFieldWidget(
-          hint: AppLocalizations.of(context).translate('login_et_user_email'),
+          hint: AppLocalizations.of(context)!.translate('login_et_user_email'),
           inputType: TextInputType.emailAddress,
           icon: Icons.person,
           iconColor: _themeStore.darkMode ? Colors.white70 : Colors.black54,
@@ -151,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Observer(
       builder: (context) {
         return TextFieldWidget(
-          hint: AppLocalizations.of(context).translate('login_et_user_password'),
+          hint: AppLocalizations.of(context)!.translate('login_et_user_password'),
           isObscure: true,
           padding: EdgeInsets.only(top: 16.0),
           icon: Icons.lock,
@@ -173,11 +173,11 @@ class _LoginScreenState extends State<LoginScreen> {
       child: FlatButton(
         padding: EdgeInsets.all(0.0),
         child: Text(
-          AppLocalizations.of(context).translate('login_btn_forgot_password'),
+          AppLocalizations.of(context)!.translate('login_btn_forgot_password'),
           style: Theme.of(context)
               .textTheme
               .caption
-              .copyWith(color: Colors.orangeAccent),
+              !.copyWith(color: Colors.orangeAccent),
         ),
         onPressed: () {},
       ),
@@ -186,7 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Widget _buildSignInButton() {
     return RoundedButtonWidget(
-      buttonText: AppLocalizations.of(context).translate('login_btn_sign_in'),
+      buttonText: AppLocalizations.of(context)!.translate('login_btn_sign_in'),
       buttonColor: Colors.orangeAccent,
       textColor: Colors.white,
       onPressed: () async {
@@ -219,7 +219,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (message != null && message.isNotEmpty) {
         FlushbarHelper.createError(
           message: message,
-          title: AppLocalizations.of(context).translate('home_tv_error'),
+          title: AppLocalizations.of(context)!.translate('home_tv_error'),
           duration: Duration(seconds: 3),
         )..show(context);
       }

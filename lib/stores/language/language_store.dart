@@ -11,7 +11,7 @@ abstract class _LanguageStore with Store {
   static const String TAG = "LanguageStore";
 
   // repository instance
-  final Repository _repository;
+  late final Repository? _repository;
 
   // store for handling errors
   final ErrorStore errorStore = ErrorStore();
@@ -24,7 +24,7 @@ abstract class _LanguageStore with Store {
   ];
 
   // constructor:---------------------------------------------------------------
-  _LanguageStore(Repository repository)
+  _LanguageStore(Repository? repository)
       : this._repository = repository {
     init();
   }
@@ -40,7 +40,7 @@ abstract class _LanguageStore with Store {
   @action
   void changeLanguage(String value) {
     _locale = value;
-    _repository.changeLanguage(value).then((_) {
+    _repository?.changeLanguage(value).then((_) {
       // write additional logic here
     });
   }

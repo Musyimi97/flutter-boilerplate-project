@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 @module
 class PreferenceModule {
   // DI variables:--------------------------------------------------------------
-  Future<SharedPreferences> sharedPref;
+  late Future<SharedPreferences> sharedPref;
 
   // constructor
   // Note: Do not change the order in which providers are called, it might cause
